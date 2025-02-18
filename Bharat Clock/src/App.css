@@ -1,0 +1,21 @@
+.App-div{
+  text-align: center;
+  padding :80px;
+  display: grid;
+  place-items: center;
+  width: 500px;
+  margin: auto;
+  top: auto;
+  margin-top: 50px;
+  border: 2px solid blueviolet;
+}
+.Header-div{
+  color: blueviolet;
+}
+.Sub-div{
+  color: brown;
+}
+.Time-div{
+  font-size: medium;
+  font-weight: bolder;
+}
