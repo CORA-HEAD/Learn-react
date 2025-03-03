@@ -4,6 +4,7 @@ import AddName from "./components/AddName";
 import AddTodo from "./components/AddTodo";
 import Todo from "./components/items";
 import WelcomeMsg from "./components/Welcomemsg";
+import { TodoItemsContext } from "./store/todo-items-store";
 function App() {
   const itemslist = [];
   const [todoItem, setTodoItem] = useState(itemslist);
@@ -23,12 +24,14 @@ function App() {
 
   return (
     <>
+     <TodoItemsContext.Provider value={[]}>
       <div className="main-div">
         <AddName></AddName>
         <AddTodo handleNewItem={handleNewItem}></AddTodo>
         <Todo itemslist={todoItem} onDeleteClick={handleDeleteItem}></Todo>
         {todoItem.length === 0 && <WelcomeMsg></WelcomeMsg>}
       </div>
+      </TodoItemsContext.Provider>
     </>
   );
 }
