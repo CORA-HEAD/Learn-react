@@ -1,36 +1,31 @@
-import { useState,useRef } from "react";
+import {useRef } from "react";
 import Todoitem from "./Todoitem";
 import { MdOutlineAddBox } from "react-icons/md";
 
 export default function AddTodo({ handleNewItem }) {
-  const [todoName, setTodoName] = useState("");
-  const [duedate, setDueDate] = useState("");
-  const noOfClicks=useRef(0);
+  const todoNameElement = useRef(null);
+  const duedateNameElement = useRef(null);
 
-  const handleNameChange = (event) => {
-    setTodoName(event.target.value);
-    noOfClicks.current+=1;
-  };
-  const handleDateChange = (event) => {
-    setDueDate(event.target.value);
-    console.log(`noOfClicks are:${noOfClicks.current}`);
-  };
   const handleAddButtonClicked = (event) => {
     console.log(event);
     event.preventDefault();
-    handleNewItem(todoName, duedate);
-    setTodoName("");
-    setDueDate("");
+    const todoName=todoNameElement.current.value;
+    const duedate=duedateNameElement.current.value;
+    todoNameElement.current.value="";
+    duedateNameElement.current.value="";
+    console.log(`${todoName} due on: ${duedate}`);
+    
+    handleNewItem(todoName,duedate);
   };
   return (
     <>
       <div className="container">
         <form action=" " className="row" onSubmit={handleAddButtonClicked}>
           <div className="col-3">
-            <input type="text" onChange={handleNameChange} value={todoName} />
+            <input type="text" ref={todoNameElement}  />
           </div>
           <div className="col-6">
-            <input type="date" onChange={handleDateChange} value={duedate} />
+            <input type="date" ref={duedateNameElement} />
           </div>
           <div className="col-2">
             <button type="submit"
